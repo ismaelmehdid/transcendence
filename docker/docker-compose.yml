@@ -1,8 +1,6 @@
 services:
   nginx:
-    build:
-      context: ../
-      dockerfile: ./docker/nginx/Dockerfile
+    image: docker-nginx:latest
     container_name: nginx
     networks:
       - transcendance
@@ -15,9 +13,7 @@ services:
       - backend
 
   backend:
-    build:
-      context: ../
-      dockerfile: ./docker/backend/Dockerfile
+    image: docker-backend:latest
     container_name: backend
     env_file: .env
     networks:
@@ -52,7 +48,7 @@ services:
       - "6379:6379"
 
   blockchain:
-    build: ./blockchain
+    image: docker-blockchain:latest
     container_name: blockchain
     networks:
       - transcendance

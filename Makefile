@@ -1,6 +1,6 @@
 DOCKER_COMPOSE_FILE = ./docker/docker-compose.yml
 
-all: check_env
+all: check_env load
 	@echo "Starting containers..."
 	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
 
@@ -12,6 +12,13 @@ check_env:
 build: check_env
 	@echo "Building and starting containers..."
 	docker compose -f $(DOCKER_COMPOSE_FILE) up --build -d
+
+load:
+	@docker load -i docker/images/docker-backend.tar
+	@docker load -i docker/images/docker-blockchain.tar
+	@docker load -i docker/images/docker-nginx.tar
+	@docker load -i docker/images/postgres-15.4.tar
+	@docker load -i docker/images/redis-7.0.tar	
 
 down:
 	@echo "Stopping containers..."

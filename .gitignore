@@ -7,3 +7,4 @@ __pycache__/
 .pytest_cache/
 migrations/
 docker/blockchain/data/
+docker/images/*
