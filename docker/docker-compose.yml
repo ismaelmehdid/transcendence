@@ -26,6 +26,24 @@ services:
       - redis
       - blockchain
 
+  blockchain:
+    image: docker-blockchain:latest
+    container_name: blockchain
+    networks:
+      - transcendance
+    command:
+      - "--dev"   # Development mode
+      - "--datadir=/blockchain/data"
+      - "--http"  # Http api
+      - "--http.addr=0.0.0.0"
+      - "--http.port=8545"
+      - "--http.api=eth,web3,personal,net"
+      - "--ipcpath=/tmp/geth.ipc"
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./blockchain/data:/blockchain/data
+
   postgres:
     image: postgres:15.4
     container_name:  postgres
@@ -46,24 +64,6 @@ services:
     restart: always
     ports:
       - "6379:6379"
-
-  blockchain:
-    image: docker-blockchain:latest
-    container_name: blockchain
-    networks:
-      - transcendance
-    command:
-      - "--dev"   # Development mode
-      - "--datadir=/blockchain/data"
-      - "--http"  # Http api
-      - "--http.addr=0.0.0.0"
-      - "--http.port=8545"
-      - "--http.api=eth,web3,personal,net"
-      - "--ipcpath=/tmp/geth.ipc"
-    ports:
-      - "8545:8545"
-    volumes:
-      - ./blockchain/data:/blockchain/data
 
 networks:
   transcendance:
