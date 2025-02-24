@@ -88,7 +88,7 @@
 | Cross-browser compatibility        | Optimized for multiple web browsers |
 
 ## 👥 Authors
-- [imehdid](https://github.com/imehdid)
+- [imehdid](https://github.com/ismaelmehdid)
 - [asyvash](https://github.com/redarling)
 - [mbriand](https://github.com/maxbriand)
 
